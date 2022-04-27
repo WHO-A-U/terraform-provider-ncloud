@@ -1,10 +1,11 @@
 package ncloud
 
 import (
+	"time"
+
 	"github.com/NaverCloudPlatform/ncloud-sdk-go-v2/services/vautoscaling"
 	"github.com/NaverCloudPlatform/ncloud-sdk-go-v2/services/vloadbalancer"
 	"github.com/NaverCloudPlatform/ncloud-sdk-go-v2/services/vnks"
-	"time"
 
 	"github.com/NaverCloudPlatform/ncloud-sdk-go-v2/services/vnas"
 	"github.com/NaverCloudPlatform/ncloud-sdk-go-v2/services/vserver"
@@ -47,6 +48,7 @@ type NcloudAPIClient struct {
 	vautoscaling  *vautoscaling.APIClient
 	vloadbalancer *vloadbalancer.APIClient
 	vnks          *vnks.APIClient
+	sourcecommit  *sourcecommit.APIClient
 }
 
 func (c *Config) Client() (*NcloudAPIClient, error) {
@@ -67,6 +69,7 @@ func (c *Config) Client() (*NcloudAPIClient, error) {
 		vautoscaling:  vautoscaling.NewAPIClient(vautoscaling.NewConfiguration(apiKey)),
 		vloadbalancer: vloadbalancer.NewAPIClient(vloadbalancer.NewConfiguration(apiKey)),
 		vnks:          vnks.NewAPIClient(vnks.NewConfiguration(c.Region, apiKey)),
+		sourcecommit:  sourcecommit.NewAPIClient(sourcecommit.NewConfiguration(apiKey)),
 	}, nil
 }
 
